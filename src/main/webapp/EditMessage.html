@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<!--
+George Un 
+-->
+<html>
+    <head>
+        <title>Edit Greeting</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#currentMsg').load('getMessage');
+                $('#submitBtn').click(function () {
+
+                    $.post("getMessage",
+                            {newMsg: $('#newMsgField').val()},
+                            function (responseText, status) {
+                                $('#currentMsg').text(responseText);
+                            },
+                            "text");
+                });
+
+            });
+
+//            $(document).ready(function () {
+//                 $('#submitBtn').click(function () {
+//                    $.post("getMessage", {newMsg: $("#newMsgField").val()},
+//                            function (data, status) {
+//                                alert("Data Loaded: " + data + "\nStatus: " + status);
+//                            });
+//                });
+//            });
+        </script> 
+    </head>
+
+    <body>
+
+        <label for="newMsgField">Current greeting: </label> 
+        <div id="currentMsg"></div>
+        <label for="newMsgField">New Greeting:</label> 
+        <input type="text" id="newMsgField" />
+        <button id="submitBtn">Submit</button>
+
+    </body>
+</html>

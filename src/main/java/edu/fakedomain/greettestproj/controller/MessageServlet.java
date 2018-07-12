@@ -48,6 +48,7 @@ public class MessageServlet extends HttpServlet {
             msg = mapper.findMessageByID(1);
             String newMsg = (String) request.getParameter("newMsg");
             if (newMsg != null) {
+                System.out.println("update message\n\n\n");
                 mapper.updateMessage(newMsg);
             }
             msg = mapper.findMessageByID(1);

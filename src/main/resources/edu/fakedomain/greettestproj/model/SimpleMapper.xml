@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.fakedomain.greettestproj.model.SimpleMapper">
+    
     <resultMap type="Message" id="MessageResult">
         <id property="id" column="MSG_ID"/>
         <result property="msg" column="GREETING"/>
@@ -13,7 +14,7 @@
     </select>
 
     <select id="checkIfDataExist" resultType="int">
-    SELECT COUNT(*) FROM SIMPLE_TABLE 
+        SELECT COUNT(*) FROM SIMPLE_TABLE 
         <!--FETCH FIRST 1 ROWS ONLY-->
     </select>    
     
@@ -26,6 +27,11 @@
     
     <update id="populateTable" > 
         INSERT INTO SIMPLE_TABLE (MSG_ID, GREETING) 
-	VALUES (1, 'Hello World!')
+        VALUES (1, 'Hello World!')
     </update > 
+    
+    <update id="updateMessage" parameterType="string">
+        UPDATE SIMPLE_TABLE SET GREETING=#{0}
+        WHERE MSG_ID=1
+    </update>
 </mapper>
