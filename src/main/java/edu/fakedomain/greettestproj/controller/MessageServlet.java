@@ -8,7 +8,6 @@ import edu.fakedomain.greettestproj.model.SimpleMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +18,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
  *
  * @author George Un
  */
-
 public class MessageServlet extends HttpServlet {
 
     /**
@@ -33,9 +31,7 @@ public class MessageServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //        response.setContentType("text/html;charset=UTF-8");
-        System.out.println("=============\ncalling servlet\n=============");
-//        System.out.println("newMsg " + request.getParameter("newMsg") + "_end");
+        response.setContentType("text/html;charset=UTF-8");
 
         PrintWriter out = response.getWriter();
 
@@ -45,16 +41,15 @@ public class MessageServlet extends HttpServlet {
         try (SqlSession session = ssf.openSession()) {
             SimpleMapper mapper
                     = session.getMapper(SimpleMapper.class);
-            msg = mapper.findMessageByID(1);
+            
+            //if client sends new Message, save it in DB
             String newMsg = (String) request.getParameter("newMsg");
             if (newMsg != null) {
-                System.out.println("update message\n\n\n");
                 mapper.updateMessage(newMsg);
+                session.commit();
             }
             msg = mapper.findMessageByID(1);
-            session.commit();
         }
-        System.out.println(msg.getMsg());
         out.println(msg.getMsg());
 
         //response.setHeader("Cache-Control", "no-cache");
