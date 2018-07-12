@@ -18,8 +18,8 @@ mvn tomcat7:run
 http://127.0.0.1:8080/greetTestProj/ShowMessage.html
 ### И видим результат.
 
-### для проверки менять значение в базе можно со страницы 
+для проверки менять значение в базе можно со страницы 
 http://127.0.0.1:8080/greetTestProj/EditMessage.html
  Значение сохранится в базе, только не запускайте повторно "mvn clean install" (иначе база будет пересоздана, файлы базы помещаются в target).
-### пароль к базе прописан в файле 
+пароль к базе прописан в файле 
 ./greetSimpleProj/src/main/resources/dbConf.properties
