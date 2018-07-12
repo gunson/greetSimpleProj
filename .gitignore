@@ -1,0 +1,15 @@
+#netbeans
+nb-configuration.xml
+core
+nbproject/*
+
+#java
+*.class
+
+#OS
+*.log
+*.out
+*~
+*.DS_Store
+*.lock
+
