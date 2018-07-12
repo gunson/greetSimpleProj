@@ -5,9 +5,9 @@ git clone https://github.com/gunson/greetSimpleProj.git
 ./greetSimpleProj
 
 ### Далее запускаем команды:
-mvn compile
-mvn clean install
-mvn derby:run
+ mvn compile; 
+ mvn clean install; 
+ mvn derby:run
 
 ### derby блокирует ввод/вывод. Открываем новый терминал в той же директории greetSimpleProjб запускаем томкат:
 mvn tomcat7:run
