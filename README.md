@@ -18,3 +18,5 @@ http://127.0.0.1:8080/greetTestProj/ShowMessage.html
 
 ### менять значение в базе можно со страницы 
 http://127.0.0.1:8080/greetTestProj/EditMessage.html
+### пароль к базе прописан в файле 
+./greetSimpleProj/src/main/resources/dbConf.properties
