@@ -1,7 +1,7 @@
 /*
  * George Un 
  */
-package edu.fakedomain.greettestproj.model.controller;
+package edu.fakedomain.greettestproj.controller;
 
 import edu.fakedomain.greettestproj.model.Message;
 import edu.fakedomain.greettestproj.model.SimpleMapper;
@@ -19,7 +19,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
  *
  * @author George Un
  */
-@WebServlet(name = "MessageServlet", urlPatterns = {"/MessageServlet"})
+
 public class MessageServlet extends HttpServlet {
 
     /**
