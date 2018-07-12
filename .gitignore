@@ -2,6 +2,16 @@
 nb-configuration.xml
 core
 nbproject/*
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+licenseheader.txt
+
+#maven
+target/
 
 #java
 *.class

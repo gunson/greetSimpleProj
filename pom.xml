@@ -16,57 +16,70 @@
     
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-            <version>7.0</version>
+            <groupId>org.apache.derby</groupId> 
+            <artifactId>derbyclient</artifactId> 
+            <version>10.14.2.0</version> 
+            <scope>compile</scope>
+        </dependency>
+        <dependency> 
+            <groupId>javax.servlet</groupId> 
+            <artifactId>javax.servlet-api</artifactId> 
+            <version>3.0.1</version> 
             <scope>provided</scope>
         </dependency>
+        <dependency> 
+            <groupId>org.mybatis</groupId> 
+            <artifactId>mybatis</artifactId> 
+            <version>3.4.6</version> 
+            <scope>compile</scope>
+        </dependency>
+    
     </dependencies>
 
     <build>
+        <finalName>greetTestProj</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
+            <plugin> 
+                <artifactId>maven-compiler-plugin</artifactId> 
                 <version>3.1</version>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
-                    <compilerArguments>
-                        <endorseddirs>${endorsed.dir}</endorseddirs>
-                    </compilerArguments>
-                </configuration>
+                    <source>1.8</source> 
+                    <target>1.8</target>
+                </configuration> 
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.3</version>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
                 <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <url>http://localhost:8080/manager/text</url>
+                    <server>TomcatServer</server>
+                    <path>/simpleProj/ShowMessage</path>
                 </configuration>
             </plugin>
+            
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.6</version>
+                <groupId>org.carlspring.maven</groupId>
+                <artifactId>derby-maven-plugin</artifactId>
+                <version>1.10</version>
+                <configuration>
+                    <basedir>${project.build.directory}/derby</basedir>
+                    <port>1527</port>
+                </configuration>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <id>start-derby</id>
+                        <phase>pre-integration-test</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>start</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
-                            <silent>true</silent>
-                            <artifactItems>
-                                <artifactItem>
-                                    <groupId>javax</groupId>
-                                    <artifactId>javaee-endorsed-api</artifactId>
-                                    <version>7.0</version>
-                                    <type>jar</type>
-                                </artifactItem>
-                            </artifactItems>
-                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>stop-derby</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
